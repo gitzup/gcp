@@ -3,7 +3,7 @@ ASSET_DIRS = $(shell find ./api -type d)
 INTERNAL_SRC = $(shell find ./internal -type f -name '*.go')
 TAG ?= dev
 
-all: internal/assets.go resource
+build: internal/assets.go resource
 
 .PHONY: clean
 clean:
