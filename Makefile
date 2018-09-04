@@ -24,3 +24,7 @@ docker:
 push-docker: docker
 	docker push gitzup/gcp-base:$(TAG)
 	docker push gitzup/gcp-project:$(TAG)
+	docker tag gitzup/gcp-base:$(TAG) gitzup/gcp-base:latest
+	docker tag gitzup/gcp-project:$(TAG) gitzup/gcp-project:latest
+	docker push gitzup/gcp-base:latest
+	docker push gitzup/gcp-project:latest
