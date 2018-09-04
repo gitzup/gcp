@@ -16,7 +16,7 @@ resource: ./cmd/resource.go $(INTERNAL_SRC) $(ASSET_FILES)
 	go build ./cmd/resource.go
 
 .PHONY: docker
-docker: resource
+docker:
 	docker build --tag gitzup/gcp-base:$(TAG) --file ./build/Dockerfile .
 	docker tag gitzup/gcp-base:$(TAG) gitzup/gcp-project:$(TAG)
 
