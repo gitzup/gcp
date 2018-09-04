@@ -6,7 +6,7 @@ INOTIFY=$(which inotifywait 2>/dev/null)
 make docker
 
 while true; do
-    EVENT=$(inotifywait -e create,modify,delete -r -q ./Makefile ./build/Dockerfile ./api ./cmd ./internal)
+    EVENT=$(inotifywait -e create,modify,delete -r -q ./main.go ./Makefile ./build/Dockerfile ./api ./cmd ./internal)
     echo >&2
     echo "=========================================" >&2
     echo "CHANGE DETECTED: ${EVENT}" >&2

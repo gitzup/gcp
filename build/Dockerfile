@@ -1,12 +1,12 @@
 FROM golang:1.9.7 AS build
-WORKDIR /go/src/github.com/gitzup/gcp-resources/
+WORKDIR /go/src/github.com/gitzup/gcp/
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
 COPY ./Gopkg.lock ./Gopkg.toml ./
 RUN dep ensure -v -vendor-only
 COPY ./api ./api/
 COPY ./cmd ./cmd/
 COPY ./internal ./internal/
-COPY ./Makefile ./
+COPY ./main.go ./Makefile ./
 RUN make
 
 ########################################################################################################################
@@ -18,5 +18,5 @@ RUN make
 FROM alpine:3.8
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 WORKDIR /app
-COPY --from=build /go/src/github.com/gitzup/gcp-resources/resource .
-ENTRYPOINT ["/app/resource"]
+COPY --from=build /go/src/github.com/gitzup/gcp/app .
+ENTRYPOINT ["/app/app"]
